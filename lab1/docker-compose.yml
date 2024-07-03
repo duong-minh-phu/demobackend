@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  lab1:
+    image: ${DOCKER_REGISTRY-}lab1
+    build:
+      context: .
+      dockerfile: lab1/Dockerfile
+    ports:
+    - 5001:443
+    depends_on:
+      - sql
+  sql:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: sql_server2022
+    ports:
+      - "1432:1433" 
+    environment:
+      - ACCEPT_EULA=y
+      - SA_PASSWORD=PHUkkkk12113
+      - MSSQL_DATABASE_NAME=lab1_prn231
